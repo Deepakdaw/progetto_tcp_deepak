@@ -2,6 +2,7 @@ import socket
 import mysql.connector
 import pickle
 import threading as th  
+import smtplib_mail
 
 
 
@@ -220,6 +221,9 @@ def gestione_comunicazione(lista_conn,z,lock, tabelle, ins, i):
             db_delete(cur,conn_sql,str(data), str(tab), temp)
             update_id_dopo_delete(cur,conn_sql,str(tab),temp) 
             lista_conn[z][0].send("ENTITÀ ELIMINATA CORRETTAMENTE".encode())
+            if colonne[0] == "id":
+                print("Email Inviata Correttamente")
+                smtplib_mail.invia_mail()
             lista_conn[z][0].close()
             lock.release()
             return 0
@@ -237,7 +241,6 @@ if __name__ == '__main__':
         )
       
     cur = conn_sql.cursor()
-
 
     PASSWORD = "1234"
     HOST = 'localhost'                 # Nome simbolico che rappresenta il nodo locale
