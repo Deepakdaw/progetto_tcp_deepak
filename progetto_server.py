@@ -183,6 +183,9 @@ def gestione_comunicazione(lista_conn,z,lock, tabelle, ins, i):
             lista_conn[z][0].close()
             return 0
         elif scelta == 3:
+            lettura = db_read(cur,["id"], "dipendenti_deepak_dawlehar")
+            lista_conn[z][0].send(list_to_bytes(lettura))
+            print(lista_conn[z][0].recv(1024).decode())
             lock.acquire()
             lettura = db_read(cur,colonne, str(tab))
             lista_conn[z][0].send(list_to_bytes(lettura))
