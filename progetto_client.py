@@ -132,7 +132,17 @@ while True:
                 s.send(list_to_bytes(lista))
                 for i in lista:
                     print(s.recv(1024).decode())
+                    print(i)
                     data = input()
+                    if i == "data_assunzione":
+                        while True:
+                            formato_corretto, data_ris = controlla_data(data)
+                            if formato_corretto :
+                                print(f"La data {data} è nel formato corretto.")
+                                break 
+                            else:
+                                print(f'La data {data} non è nel formato corretto o non è valida. Riprova.')
+                                data = input("Inserisci una data nel formato YYYY-MM-DD: ")
                     s.send(data.encode())
                 print(s.recv(1024).decode()) 
 
