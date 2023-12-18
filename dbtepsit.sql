@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Nov 19, 2023 alle 20:53
+-- Creato il: Dic 18, 2023 alle 22:39
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -45,7 +45,7 @@ INSERT INTO `dipendenti_deepak_dawlehar` (`id`, `nome`, `cognome`, `pos_lavorati
 (1, 'Mario', 'Rossi', 'Manager', '2023-10-24', 'Via Roma 123', '555-1234'),
 (2, 'Luca', 'Bianchi', 'Sviluppatore', '2023-10-25', 'Via Milano 456', '555-5678'),
 (3, 'Giovanni', 'Marroni', 'Sviluppatore', '2023-10-29', 'Via Torino 1415', '555-2345'),
-(4, 'Laura', 'Rosa', 'Analista', '2023-10-30', 'Via Bologna 1617', '555-6789'),
+(4, 'Laura', 'Rosa', 'Analista', '2022-03-01', 'Via Roma', '555-6789'),
 (5, 'Davide', 'Azzurri', 'Sviluppatore', '2023-10-31', 'Via Genova 1819', '555-1234'),
 (6, 'Elena', 'Arancioni', 'Analista', '2023-11-01', 'Via Palermo 2021', '555-5678'),
 (7, 'Riccardo', 'Verdi', 'Manager', '2023-11-02', 'Via Catania 2223', '555-9012'),
@@ -80,11 +80,7 @@ INSERT INTO `zone_di_lavoro_deepak_dawlehar` (`id_zona`, `nome_zona`, `numero_cl
 (7, 'Zona B', 200, 8, 6000),
 (8, 'Zona C', 150, 7, 4500),
 (9, 'Zona D', 120, 6, 4800),
-(10, 'Zona F', 90, 4, 2700),
-(11, 'Zona G', 160, 3, 4800),
-(12, 'Zona H', 130, 2, 3900),
-(13, 'Zona I', 110, 1, 3300),
-(14, 'Zona J', 140, 1, 4200);
+(10, 'Zona Prova', 32, 1, 2700);
 
 --
 -- Indici per le tabelle scaricate
@@ -127,6 +123,7 @@ ALTER TABLE `zone_di_lavoro_deepak_dawlehar`
 -- Limiti per la tabella `zone_di_lavoro_deepak_dawlehar`
 --
 ALTER TABLE `zone_di_lavoro_deepak_dawlehar`
+  ADD CONSTRAINT `id_dipendente` FOREIGN KEY (`id_dipendente`) REFERENCES `dipendenti_deepak_dawlehar` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `zone_di_lavoro_deepak_dawlehar_ibfk_1` FOREIGN KEY (`id_dipendente`) REFERENCES `dipendenti_deepak_dawlehar` (`id`);
 COMMIT;
 
