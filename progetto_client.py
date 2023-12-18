@@ -110,6 +110,9 @@ while True:
             #-------------------------------------------------------------------------------------------------------------------------------------------------------
 
             elif scelta == 3:
+                id = bytes_to_list(s.recv(1024))
+                s.send("ricevuti id".encode())
+                id2 = [elemento[0] for elemento in id]
                 lettura = bytes_to_list(s.recv(1024))
                 for row in lettura:
                     print(row,"\n")
@@ -132,7 +135,6 @@ while True:
                 s.send(list_to_bytes(lista))
                 for i in lista:
                     print(s.recv(1024).decode())
-                    print(i)
                     data = input()
                     if i == "data_assunzione":
                         while True:
@@ -143,6 +145,9 @@ while True:
                             else:
                                 print(f'La data {data} non è nel formato corretto o non è valida. Riprova.')
                                 data = input("Inserisci una data nel formato YYYY-MM-DD: ")
+                    if(i == "id_dipendente" and data not in id2):
+                        while(data not in str(id2)):
+                            data = input(f"inserire un valore compreso nei valori {id2}: ")
                     s.send(data.encode())
                 print(s.recv(1024).decode()) 
 
